@@ -4,6 +4,7 @@ package com.udacity.abhishekbansal.sunshine;
  * Created by Abhishek Bansal on 10/3/2014.
  */
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,8 +16,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,8 +34,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -78,6 +81,17 @@ public class ForecastFragment extends Fragment {
 
         ListView listView = (ListView)rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(mForecastAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String data = mForecastAdapter.getItem(i);
+                Toast.makeText(getActivity(), data, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), DetailsActivity.class)
+                        .putExtra(Intent.EXTRA_TEXT, data);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
