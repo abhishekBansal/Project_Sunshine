@@ -210,7 +210,7 @@ public class ForecastFragment extends Fragment {
                 }
 
             } catch (IOException e) {
-                Log.e("PlaceholderFragment", "Error ", e);
+                Log.e("ForecastFragment", "Error ", e);
                 // If the code didn't successfully get the weather data, there's no point in attempting
                 // to parse it.
                 forecastJsonStr = null;
@@ -222,7 +222,7 @@ public class ForecastFragment extends Fragment {
                     try {
                         reader.close();
                     } catch (final IOException e) {
-                        Log.e("PlaceholderFragment", "Error closing stream", e);
+                        Log.e("ForecastFragment", "Error closing stream", e);
                     }
                 }
             }
